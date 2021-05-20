@@ -1,0 +1,23 @@
+name: 'Go AWS Lambda Builder'
+description: 'Build Go lambda zips'
+author: Aaron Griffin
+inputs:
+  files:
+    description: "Source files"
+    required: true
+  credentials:
+    description: "Git credentials - https://git-scm.com/docs/git-credential-store"
+    required: false
+  directory:
+    description: Relative path under $GITHUB_WORKSPACE where Cargo project is located
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://sevcosec/go-lambda-action:1.0.0'
+  args:
+    - ${{ inputs.files }}
+    - ${{ inputs.directory }}
+    - ${{ inputs.credentials }}
+branding:
+  icon: box
+  color: orange
