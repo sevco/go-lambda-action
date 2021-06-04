@@ -10,7 +10,7 @@ Go AWS Lambda Builder Action
 GitHub action for building Go based lambdas
 
 ```yaml
-- uses: sevco/go-lambda-action@v1.0.0
+- uses: sevco/go-lambda-action@v1.0.1
   with:
     files: "main.go other/helper.go"
     credentials: ${{ secrets.GIT_CREDENTIALS }}
