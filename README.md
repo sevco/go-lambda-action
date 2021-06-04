@@ -16,9 +16,22 @@ GitHub action for building Go based lambdas
     credentials: ${{ secrets.GIT_CREDENTIALS }}
 ```
 
+### Environment
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| GIT_REFERENCE | Git commit sha | false | Output of `git rev-parse --short HEAD` |
+| GIT_BRANCH | Git branch | false | Output of `git rev-parse --abbrev-ref HEAD` |
+
 ### Inputs
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
 | files     | Source files to be built and packaged (space separated) | true | | 
 | directory | Relative path under $GITHUB_WORKSPACE where source code is located | false |
 | credentials | If provided git will be configured to use these credentials and https | false | |
+
+### Outputs
+
+If `directory` argument is specified outputs will be relative to that directory.
+
+* build/artifacts/lambda.$GIT_BRANCH.GIT_REFERENCE.zip
+* build/artifacts/lambda.$GIT_BRANCH.latest.zip

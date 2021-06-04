@@ -13,8 +13,15 @@ if [ "x$2" != "x" ]; then
     cd $2
 fi
 
-GIT_REVISION=$(echo $GITHUB_SHA | cut -c1-7 )
-GIT_BRANCH="${GITHUB_REF##*/}"
+if [ -z "$GIT_REVISION" ]; then
+    echo "Parsing git revision"
+    GIT_REVISION=$(git rev-parse --short HEAD)
+fi
+
+if  [ -z "$GIT_BRANCH" ]; then 
+    echo "Parsing git branch"
+    GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+fi
 
 REVISION_ZIP="lambda.${GIT_BRANCH}.${GIT_REVISION}.zip"
 LATEST_ZIP="lambda.${GIT_BRANCH}.latest.zip"
