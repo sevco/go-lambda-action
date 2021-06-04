@@ -19,7 +19,7 @@ GitHub action for building Go based lambdas
 ### Environment
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| GIT_REFERENCE | Git commit sha | false | Output of `git rev-parse --short HEAD` |
+| GIT_REVISION | Git commit sha | false | Output of `git rev-parse --short HEAD` |
 | GIT_BRANCH | Git branch | false | Output of `git rev-parse --abbrev-ref HEAD` |
 
 ### Inputs
@@ -33,5 +33,5 @@ GitHub action for building Go based lambdas
 
 If `directory` argument is specified outputs will be relative to that directory.
 
-* build/artifacts/lambda.$GIT_BRANCH.GIT_REFERENCE.zip
+* build/artifacts/lambda.$GIT_BRANCH.GIT_REVISION.zip
 * build/artifacts/lambda.$GIT_BRANCH.latest.zip
