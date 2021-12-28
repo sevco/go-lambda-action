@@ -1,7 +1,7 @@
-FROM lambci/lambda:build-go1.x
+FROM amazon/aws-sam-cli-build-image-go1.x:latest
 
 RUN mkdir -p /github
-RUN useradd -m -d /github/home -u 1001 github
+RUN /usr/sbin/useradd -m -d /github/home -u 1001 github
 
 ADD entrypoint.sh cleanup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh && \
