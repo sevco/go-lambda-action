@@ -1,6 +1,6 @@
 test: build/example
 	echo "Building lambda" && \
-		GIT_REVISION=testsha ./entrypoint.sh "hello/hello.go" "example" "" \
+		GIT_REVISION=testsha ./entrypoint.sh "hello/hello.go" "build/example" "" \
 		echo "Running cleanup" && ./cleanup.sh
 	@echo "Making sure lambda zip was created"
 	[ -f build/example/build/artifacts/lambda.master.latest.zip ] || exit 1
