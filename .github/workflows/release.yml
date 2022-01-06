@@ -19,12 +19,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: "master"
           dry_run: true
-      - name: Update version in actions.yml
-        uses: jacobtomlinson/gha-find-replace@0.1.4
-        with:
-          find: "docker://sevcosec/go-lambda-action:${{ steps.tag_version.outputs.previous_version }}"
-          replace: "docker://sevcosec/go-lambda-action:${{ steps.tag_version.outputs.new_version }}"
-          include: "action.yml"
       - name: Update version in README
         uses: jacobtomlinson/gha-find-replace@0.1.4
         with:

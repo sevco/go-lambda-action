@@ -12,12 +12,11 @@ inputs:
     description: Relative path under $GITHUB_WORKSPACE where Cargo project is located
     required: false
 runs:
-  using: 'docker'
-  image: 'docker://sevcosec/go-lambda-action:1.0.1'
-  args:
-    - ${{ inputs.files }}
-    - ${{ inputs.directory }}
-    - ${{ inputs.credentials }}
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh "${{ inputs.files }}" "${{ inputs.directory }}" "${{ inputs.credentials }}"
+      shell: bash
+
 branding:
   icon: box
   color: orange
