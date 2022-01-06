@@ -14,13 +14,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo ${{ github.action_path }}/entrypoint.sh "${{ inputs.files }}" "${{ inputs.directory }}" "${{ inputs.credentials }}"
+    - run: ${{ github.action_path }}/entrypoint.sh "${{ inputs.files }}" "${{ inputs.directory }}" "${{ inputs.credentials }}"
       shell: bash
 
-#  args:
-#    - ${{ inputs.files }}
-#    - ${{ inputs.directory }}
-#    - ${{ inputs.credentials }}
 branding:
   icon: box
   color: orange
