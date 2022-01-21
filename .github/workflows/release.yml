@@ -26,7 +26,7 @@ jobs:
           replace: "sevco/go-lambda-action@${{ steps.tag_version.outputs.new_tag }}"
           include: "README.md"
       - name: Commit and push
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
           message: "Updated actions container to ${{ steps.tag_version.outputs.new_version }}"
           add: '["action.yml", "README.md"]'
