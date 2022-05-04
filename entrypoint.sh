@@ -23,8 +23,7 @@ if  [ -z "$GIT_BRANCH" ]; then
     GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
 
-REVISION_ZIP="lambda.${GIT_BRANCH}.${GIT_REVISION}.zip"
-LATEST_ZIP="lambda.${GIT_BRANCH}.latest.zip"
+
 
 export GOPATH=$PWD/go:$GOPATH
 mkdir -p go
@@ -43,12 +42,16 @@ echo "Building files"
 for file in $1
 do
     echo "Building $file"
-    go build -o build/output/ $file
+    EXECUTABLE=$(basename $file .go)
+    REVISION_ZIP="${EXECUTABLE}.${GIT_BRANCH}.${GIT_REVISION}.zip"
+    LATEST_ZIP="${EXECUTABLE}.${GIT_BRANCH}.latest.zip"
+    go build -o build/output/bootstrap $file
+    echo "Packaging lambda zip"
+    pushd build/output
+    zip -9yr ../artifacts/$REVISION_ZIP *
+    cp ../artifacts/$REVISION_ZIP ../artifacts/$LATEST_ZIP
+    popd
+    echo "Successfully created $REVISION_ZIP and $LATEST_ZIP"
 done
 
-echo "Packaging lambda zip"
-cd build/output
-zip -9yr ../artifacts/$REVISION_ZIP *
-cp ../artifacts/$REVISION_ZIP ../artifacts/$LATEST_ZIP
 
-echo "Successfully created $REVISION_ZIP and $LATEST_ZIP"
