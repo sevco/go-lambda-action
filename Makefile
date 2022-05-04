@@ -3,8 +3,8 @@ test: build/example
 		GIT_REVISION=testsha ./entrypoint.sh "hello/hello.go" "build/example" "" \
 		echo "Running cleanup" && ./cleanup.sh
 	@echo "Making sure lambda zip was created"
-	[ -f build/example/build/artifacts/lambda.master.latest.zip ] || exit 1
-	[ -f build/example/build/artifacts/lambda.master.testsha.zip ] || exit 1
+	[ -f build/example/build/artifacts/hello.master.latest.zip ] || exit 1
+	[ -f build/example/build/artifacts/hello.master.testsha.zip ] || exit 1
 
 .PHONY:
 clean:
