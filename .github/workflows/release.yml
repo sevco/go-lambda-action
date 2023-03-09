@@ -20,7 +20,7 @@ jobs:
           release_branches: "master"
           dry_run: true
       - name: Update version in README
-        uses: jacobtomlinson/gha-find-replace@2.0.0
+        uses: jacobtomlinson/gha-find-replace@3.0.2
         with:
           find: "sevco/go-lambda-action@${{ steps.tag_version.outputs.previous_tag }}"
           replace: "sevco/go-lambda-action@${{ steps.tag_version.outputs.new_tag }}"
